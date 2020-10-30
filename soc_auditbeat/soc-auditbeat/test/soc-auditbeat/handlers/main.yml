@@ -1,0 +1,6 @@
+---
+# handlers file for soc-auditbeat
+- name: "restart auditbeat"
+  service:
+    name: auditbeat
+    state: restarted

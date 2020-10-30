@@ -1,0 +1,29 @@
+---
+
+# - name: Stop existing auditd service
+#   command: service auditd stop
+#   ignore_errors: yes
+#   when: ansible_os_family == "RedHat"
+
+# - name: Remove auditd package
+#   package:
+#     name:
+#     - auditd
+#     - audit
+#     state: absent
+
+- name: Add Elastic yum signing key (internal)
+  rpm_key:
+    state: present
+    key: https://mirror.vpgrp.io/keys/elastic.gpg
+
+- name: Add Elastic yum signing key (public)
+  rpm_key:
+    state: present
+    key: https://packages.elastic.co/GPG-KEY-elasticsearch
+
+- name: Add Elastic repository for yum
+  copy:
+    mode: 0644
+    dest: /etc/yum.repos.d/elastic-7.x.repo
+    src: "{{ role_path }}/files/elastic-7.x.repo"

@@ -1,0 +1,22 @@
+---
+galaxy_info:
+  author: Security team
+  description: An ansible role to integrate auditbeat.
+  company: vente-privee.com
+  license: Apache-2.0
+  min_ansible_version: 1.2
+  platforms:
+    - name: Debian
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+    - name: CentOS
+      versions:
+        - 7
+    - name: RedHat
+      versions:
+        - all
+  galaxy_tags: soc-auditbeat
+dependencies: []

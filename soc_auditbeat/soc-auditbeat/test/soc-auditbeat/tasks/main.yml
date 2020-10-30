@@ -1,0 +1,41 @@
+---
+
+- include_tasks: repo_{{ ansible_os_family }}.yml
+
+- name: Install auditbeat
+  package:
+    name: auditbeat={{ auditbeat_version }}
+    state: present
+    update_cache: yes
+  notify:
+    - restart auditbeat
+
+- name: "Hold auditbeat package to prevent unexpected updated"
+  dpkg_selections:
+    name: auditbeat
+    selection: hold
+
+- name: Clean sample rules (32bits)
+  file:
+    path: /etc/auditbeat/audit.rules.d/sample-rules-linux-32bit.conf
+    state: absent
+
+- name: Clean sample rules (64bits)
+  file:
+    path: /etc/auditbeat/audit.rules.d/sample-rules-linux-64bit.conf
+    state: absent
+
+- name: Generate auditbeat configuration
+  template:
+    src: auditbeat.yml.j2
+    dest: /etc/auditbeat/auditbeat.yml
+    owner: root
+    group: root
+    mode: 0600
+  notify: restart auditbeat
+
+- name: Auditbeat service
+  service:
+    name: auditbeat
+    state: started
+    enabled: yes

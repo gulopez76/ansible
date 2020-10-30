@@ -1,0 +1,7 @@
+---
+# defaults file for auditbeats
+auditbeat_version: 7.5.0-1
+auditbeat_auditd_module: True
+auditbeat_fim_module: False
+auditbeat_loglevel: "warning"
+auditbeat_logstash_servers: '["fr-log01.secu.vpgrp.io:5044","fr-log02.secu.vpgrp.io:5044","fr-log03.secu.vpgrp.io:5044","fr-log04.secu.vpgrp.io:5044"]'

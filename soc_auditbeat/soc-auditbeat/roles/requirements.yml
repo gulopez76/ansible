@@ -1,0 +1,5 @@
+---
+- src: https://git.vptech.eu/veepee/security/security-galaxy/soc-auditbeat
+  scm: git
+  version: "master"
+  name: "soc-auditbeat"

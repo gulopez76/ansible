@@ -1,0 +1,17 @@
+---
+
+- name: Install gpg for apt_key
+  package:
+    name: gpgv
+    state: latest
+    update_cache: yes
+
+- name: Add Elastic apt signing key
+  apt_key:
+    url: https://mirror.vpgrp.io/keys/elastic.gpg
+    state: present
+
+- name: Add Elastic repository for apt
+  apt_repository:
+    repo: deb [ arch=amd64 ] https://mirror.vpgrp.io/debian-elastic7 stable main
+    state: present

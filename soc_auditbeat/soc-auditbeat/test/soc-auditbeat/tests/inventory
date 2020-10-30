@@ -1,0 +1,5 @@
+[local]
+localhost
+
+[your_servers]
+# list of the servers where the agents must be deployed 
